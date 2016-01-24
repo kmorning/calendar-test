@@ -33,6 +33,12 @@ gem 'simple_form'
 # Simple Calendar
 #gem "simple_calendar", "~> 2.0"
 
+# Try to fix foundation scripts turbolinks break.
+gem 'jquery-turbolinks'
+
+# momentjs needed by fullcalendar
+gem 'momentjs-rails'
+
 # Try FullCalendar instead
 gem 'fullcalendar-rails'
 
