@@ -33,6 +33,9 @@ gem 'simple_form'
 # Simple Calendar
 #gem "simple_calendar", "~> 2.0"
 
+# Try FullCalendar instead
+gem 'fullcalendar-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
