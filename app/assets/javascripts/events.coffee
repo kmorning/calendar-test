@@ -4,8 +4,8 @@
 $(document).ready ->
   $("#calendar").fullCalendar
     events: '/events.json'
-    dayClick: (date, jsEvent, view) ->
-      alert('Clicked on: ' + date.format())
-      alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY)
-      alert('Current view: ' + view.name)
-      $(this).css('background-color', 'red')
+#    dayClick: (date, jsEvent, view) ->
+#      start_date = date
+#      $.get 'events/new', {start_date} 
+      
+

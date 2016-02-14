@@ -42,6 +42,9 @@ gem 'momentjs-rails'
 # Try FullCalendar instead
 gem 'fullcalendar-rails'
 
+# For repeating event schedules
+gem 'ice_cube'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
