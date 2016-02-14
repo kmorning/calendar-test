@@ -48,6 +48,9 @@ gem 'ice_cube'
 # For simpler active record queries
 gem 'squeel'
 
+# A helper for creating declarative interfaces in controllers
+gem 'decent_exposure'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
