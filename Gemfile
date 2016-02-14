@@ -45,6 +45,9 @@ gem 'fullcalendar-rails'
 # For repeating event schedules
 gem 'ice_cube'
 
+# For simpler active record queries
+gem 'squeel'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
