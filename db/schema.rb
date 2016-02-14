@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214200415) do
+ActiveRecord::Schema.define(version: 20160214212800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,19 @@ ActiveRecord::Schema.define(version: 20160214200415) do
     t.string   "repeat_ends"
     t.date     "repeat_ends_on"
     t.string   "time_zone"
-    t.integer  "calendar_id"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.integer  "calendar_id"
+  end
+
+  add_index "calendar_events", ["calendar_id"], name: "index_calendar_events_on_calendar_id", using: :btree
+
+  create_table "calendars", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "color"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -55,4 +65,5 @@ ActiveRecord::Schema.define(version: 20160214200415) do
     t.string   "title"
   end
 
+  add_foreign_key "calendar_events", "calendars"
 end
