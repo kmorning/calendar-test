@@ -1,7 +1,7 @@
 class CalendarsController < ApplicationController
   expose(:events){ Event.all }
   expose(:calendars){ Calendar.all }
-  expose(:calendar){
+  expose(:calendar, attributes: :calendar_params){
     if params[:id]
       Calendar.find(params[:id])
     elsif params[:calendar][:id]
@@ -31,5 +31,10 @@ class CalendarsController < ApplicationController
   def destroy
     calendar.destroy
     redirect_to root_path
+  end
+
+  private
+  def calendar_params
+    params.require(:calendar).permit(:name, :color, :description)
   end
 end

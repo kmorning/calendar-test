@@ -2,28 +2,6 @@ module Repeatable
   extend ActiveSupport::Concern
 
   included do
-    attr_accessible :from_date
-    attr_accessible :from_time
-    attr_accessible :to_date
-    attr_accessible :to_time
-    attr_accessible :is_all_day
-    attr_accessible :repeat_ends
-    attr_accessible :repeat_ends_on
-    attr_accessible :repeats
-    attr_accessible :repeats_every_n_days
-    attr_accessible :repeats_every_n_weeks
-    attr_accessible :repeats_weekly_each_days_of_the_week
-    attr_accessible :repeats_every_n_months
-    attr_accessible :repeats_monthly
-    attr_accessible :repeats_monthly_each_days_of_the_month
-    attr_accessible :repeats_monthly_on_days_of_the_week
-    attr_accessible :repeats_monthly_on_ordinals
-    attr_accessible :repeats_every_n_years
-    attr_accessible :repeats_yearly_each_months_of_the_year
-    attr_accessible :repeats_yearly_on
-    attr_accessible :repeats_yearly_on_days_of_the_week
-    attr_accessible :repeats_yearly_on_ordinals
-    attr_accessible :time_zone
     validates :repeats, :presence => true
     validates :repeats_every_n_days, :presence => true, :if => lambda { |e| e.repeats == "daily" }
     validates :repeats_every_n_weeks, :presence => true, :if => lambda { |e| e.repeats == "weekly" }

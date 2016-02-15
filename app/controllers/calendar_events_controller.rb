@@ -1,6 +1,6 @@
 class CalendarEventsController < ApplicationController
   expose(:calendar_events){ CalendarEvent.all }
-  expose(:calendar_event){
+  expose(:calendar_event, attributes: :calendar_event_params){
     if params[:action] == 'new'
       Event.new()
     elsif params[:action] == 'create'
@@ -52,5 +52,26 @@ class CalendarEventsController < ApplicationController
     event = CalendarEvent.find(params[:id])
     event.destroy
     redirect_to root_path
+  end
+
+  private
+  def calendar_event_params
+    pararms.require(:calendar_event).permit(:from_date, :from_time, :to_date,
+                                            :to_time, :is_all_day, :repeat_ends,
+                                            :repeat_ends_on, :repeats,
+                                            :repeats_every_n_days,
+                                            :repeats_every_n_weeks,
+                                            :repeats_weekly_each_days_of_the_week,
+                                            :repeats_every_n_months,
+                                            :repeats_monthly,
+                                            :repeats_monthly_each_days_of_the_month,
+                                            :repeats_monthly_on_days_of_the_week,
+                                            :repeats_monthly_on_ordinals,
+                                            :repeats_every_n_years,
+                                            :repeats_yearly_each_months_of_the_year,
+                                            :repeats_yearly_on,
+                                            :repeats_yearly_on_days_of_the_week,
+                                            :repeats_yearly_on_ordinals,
+                                            :time_zone, :calendar_id)
   end
 end
