@@ -51,6 +51,9 @@ gem 'squeel'
 # A helper for creating declarative interfaces in controllers
 gem 'decent_exposure'
 
+# Haml
+gem "haml"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
