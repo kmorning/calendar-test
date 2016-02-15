@@ -2,11 +2,11 @@ class CalendarEventsController < ApplicationController
   expose(:calendar_events){ CalendarEvent.all }
   expose(:calendar_event, attributes: :calendar_event_params){
     if params[:action] == 'new'
-      Event.new()
+      CalendarEvent.new()
     elsif params[:action] == 'create'
-      Event.new(params[:calendar_event])
+      CalendarEvent.new(params[:calendar_event])
     elsif params[:action] == 'show' || params[:action] == 'edit'
-      Event.find(params[:id])
+      CalendarEvent.find(params[:id])
     end
   }
   def new
@@ -35,7 +35,7 @@ class CalendarEventsController < ApplicationController
         params[:calendar_event][:to_time] = Time.now.end_of_day
       end
     end
-    if event.save
+    if calendar_event.save
       flash[:notice] = 'Event Created'
       redirect_to root_path
     else
@@ -49,8 +49,8 @@ class CalendarEventsController < ApplicationController
     redirect_to root_path
   end
   def destroy
-    event = CalendarEvent.find(params[:id])
-    event.destroy
+    calendar_event = CalendarEvent.find(params[:id])
+    calendar_event.destroy
     redirect_to root_path
   end
 
