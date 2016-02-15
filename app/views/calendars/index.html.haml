@@ -1,0 +1,110 @@
+.large-9.columns
+  = link_to 'New Event', new_calendar_event_path, :class => 'btn btn-primary pull-right'
+  %h4
+    Currently:
+    = Time.now.strftime("%v %r")
+  #calendar{:style => 'margin:1em 0;'}
+  -##popover-content
+    LOAD FORM HERE
+    %button Click
+    
+.large-3.columns
+  %h1 Calendars
+  %ul
+    - Calendar.all.each do |c|
+      %li
+        .minicolors-swatch
+          %span{:style => "background-color: #{c.color};"}
+            = check_box_tag 'show_calendar_'+c.id.to_s, value = c.id.to_s, checked = true, :onchange => "reload_calendar()", :class => 'visable_calendars'
+        = c.name
+        = link_to 'x', calendar_path(c), :confirm => 'Are you sure you want to remove the calendar?', :method => :delete
+  %br
+  = simple_form_for(Calendar.new, :html => {:class => 'form-horizontal' }) do |f|
+    = f.input :name, input_html: {:style => 'width:100px;'}
+    %br
+    = #f.input :description
+    = f.input :color #, as: :minicolors, input_html: {data: { minicolors: {theme: :bootstrap, swatchPosition: :right}}}
+    %br
+    %br
+    = f.button :submit, :class => 'pull-right'
+  %h2 Today's Events
+  %ul
+    -calendar_events.map do |e| 
+      - if (e.schedule.occurs_on? Date.today ) || (e.schedule.occurring_at? Time.now)
+        %li
+          = link_to 'x', calendar_event_path(e), :confirm => 'Are you sure you want to remove the event?', :method => :delete
+          = link_to e.name, calendar_event_path(e)
+          - if e.is_all_day
+            %i
+              All Day Event
+          - else
+            %i
+              = e.from_time.strftime('%I:%M %p')
+              = '-'
+              = e.to_time.strftime('%I:%M %p')
+            %br
+  %h2 Happening Now
+  - now = Time.now.strftime('%H%M').to_i
+  %ul
+    - calendar_events.map do |e|
+
+      - if e.schedule.occurring_at? Time.now
+        -if e.is_all_day
+          %li
+            = link_to 'x', calendar_event_path(e), :confirm => 'Are you sure you want to remove the event?', :method => :delete
+            = link_to e.name, calendar_event_path(e) 
+            %i
+              All Day Event
+            %br
+        -else
+          - if e.from_time.strftime('%H%M').to_i <= now && e.to_time.strftime('%H%M').to_i >= now
+            %li
+              = link_to 'x', calendar_event_path(e), :confirm => 'Are you sure you want to remove the event?', :method => :delete
+              = link_to e.name, calendar_event_path(e) 
+              %i
+                = e.from_time.strftime('%I:%M %p')
+                = '-'
+                = e.to_time.strftime('%I:%M %p')
+- content_for :footer do
+  :javascript
+    function reload_calendar(){
+      var source = new Array();
+      var viewable_calendars = $('input:checkbox:checked.visable_calendars').map(function () {
+        return this.value;
+        }).get().join(',');
+      var calendar_url = '/calendar_event_instances.json?calendar_ids=' + viewable_calendars;
+      var new_calendar_event_link = "#{new_calendar_event_path}"
+      $('#calendar').fullCalendar({
+        dayClick: function(date, allDay, jsEvent, view) {
+          document.location.href=new_calendar_event_link + "?start_date=" + date;
+        },
+          header: {
+              left: 'prev,today,next',
+              center: 'title',
+              right: 'month,agendaWeek,agendaDay'
+          },
+          selectable: true,
+          selectHelper: true,
+          editable: false,
+          ignoreTimezone: false,
+          select: this.select,
+          eventClick: this.eventClick,
+          eventDrop: this.eventDropOrResize,
+          eventSources: [
+            {
+                url: calendar_url,
+                data: {
+                    custom_param1: 'something',
+                    custom_param2: 'somethingelse'
+                },
+                error: function() {
+                    alert('there was an error while fetching events!');
+                }
+            }
+          ],
+          eventResize: this.eventDropOrResize,
+          timeFormat: 'h:mmtt{ - h:mmtt} '
+      });
+    }
+    reload_calendar();
+

@@ -1,19 +1,19 @@
 class CalendarsController < ApplicationController
-  expose(:events){ Event.all }
-  expose(:calendars){ Calendar.all }
-  expose(:calendar, attributes: :calendar_params){
-    if params[:id]
-      Calendar.find(params[:id])
-    elsif params[:calendar][:id]
-      Calendar.find(params[:calendar][:id])
-    elsif params[:calendar]
-      Calendar.new(params[:calendar])
-    end
-  }
+  expose(:calendar_events)#{ CalendarEvent.all }
+  expose(:calendars)#{ Calendar.all }
+  expose(:calendar, attributes: :calendar_params)#{
+#    if params[:id]
+#      Calendar.find(params[:id])
+#    elsif params[:calendar][:id]
+#      Calendar.find(params[:calendar][:id])
+#    elsif params[:calendar]
+ #     Calendar.new(params[:calendar])
+#    end
+#  }
 
-  def index
+#  def index
     #render :json => calendars.map{|c| {:key => c.id, :label => c.name}}, :layout => false
-  end
+#  end
 
   def create
     if calendar.save
