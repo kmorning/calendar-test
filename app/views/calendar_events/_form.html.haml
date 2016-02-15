@@ -12,14 +12,14 @@
     .large-6.columns
       = f.input :is_all_day
       - if params[:start_date]
-        = f.input :from_date, input_html: {value: "#{start_date}"}
+        = f.input :from_date, as: :datepicker, input_html: {value: "#{start_date}"}
         = f.input :from_time, input_html: {value: "#{start_time}"}
-        = f.input :to_date, input_html: {value: "#{start_date}"}
+        = f.input :to_date, as: :datepicker, input_html: {value: "#{start_date}"}
         = f.input :to_time, input_html: {value: "#{end_time}"}
       - else
-        = f.input :from_date
+        = f.input :from_date, as: :datepicker
         = f.input :from_time
-        = f.input :to_date
+        = f.input :to_date, as: :datepicker
         = f.input :to_time
 
     .row
