@@ -13,7 +13,7 @@ class CalendarEventInstance
     # line 4 = Event starts before our end date and repeats until a certain point of time, and that point of time after our begin date
     # line 5 = Event repeats indefinitely, then all we care about is that it has started at somepoint in the last
     if !calendar_ids.empty?
-      results = Event.where{
+      results = CalendarEvent.where{
         (
           (repeats == 'never') &
           (from_date >= begin_date) &
@@ -38,7 +38,7 @@ class CalendarEventInstance
         )
       }.where(:calendar_id => calendar_ids.split(',').reject{ |c| c.empty? }.uniq)
     else
-     results = Event.where{
+     results = CalendarEvent.where{
        (
          (repeats == 'never') &
          (from_date >= begin_date) &
@@ -65,7 +65,7 @@ class CalendarEventInstance
     end
     results.map { |event|
       event.schedule.occurrences_between(begin_date,end_date).map { |date|
-        i = EventInstance.new()
+        i = CalendarEventInstance.new()
         i.title = event.name
         i.color = event.calendar.color
         i.url = Rails.application.routes.url_helpers.event_path(event)
