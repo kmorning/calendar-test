@@ -1,6 +1,25 @@
 class CalendarEventsController < ApplicationController
-  expose(:calendar_event, attributes: :calendar_event_params)
+  expose(:events){ Event.all }
+  expose(:event){
+    if params[:action] == 'new'
+      Event.new()
+    elsif params[:action] == 'create'
+      Event.new(params[:event])
+    elsif params[:action] == 'show' || params[:action] == 'edit'
+      Event.find(params[:id])
+    end
+  }
+  def new
+  end
+  def show
+  end
+  def index
 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: events }
+    end
+  end
   def create
     if params[:event][:from_date].empty?
       params[:event][:from_date] = Date.today
@@ -16,32 +35,22 @@ class CalendarEventsController < ApplicationController
         params[:event][:to_time] = Time.now.end_of_day
       end
     end
-    if calendar_event.save
+    if event.save
       flash[:notice] = 'Event Created'
       redirect_to root_path
     else
       render :new
     end
   end
-
   def update
-    if calendar_event.save
-      flash[:notice] = 'Event Updated'
-      redirect_to root_path
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    calendar_event.destroy
+    e = Event.find(params[:id])
+    e.update_attributes(params[:event])
+    flash[:notice] = 'Event Updated'
     redirect_to root_path
   end
-
-  private
-  def calendar_event_params
-    params(:calendar_event).permit()
+  def destroy
+    event = Event.find(params[:id])
+    event.destroy
+    redirect_to root_path
   end
 end
-
-
