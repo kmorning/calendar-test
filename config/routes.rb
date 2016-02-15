@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :calendars
   resources :calendar_events
+  resources :calendar_event_instances
   get 'welcome/index'
 
   resources :events

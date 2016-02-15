@@ -2,7 +2,6 @@
 - start_time = params[:start_date].to_datetime.strftime('%I:%M %p') if params[:start_date]
 - end_time = (params[:start_date].to_datetime + 30.minutes).strftime('%I:%M %p') if params[:start_date]
 
-
 = simple_form_for calendar_event do |f|
   = f.error_notification
   .row
@@ -10,7 +9,7 @@
       = f.input :name
       = f.input :description
       = f.association :calendar
-    .large-6.colums
+    .large-6.columns
       = f.input :is_all_day
       - if params[:start_date]
         = f.input :from_date, input_html: {value: "#{start_date}"}
