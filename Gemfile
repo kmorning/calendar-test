@@ -55,7 +55,7 @@ gem 'decent_exposure'
 gem "haml"
 
 # Date picker - from git for rails 4 support
-gem 'jquery_datepicker', git: 'https://github.com/foodforarabbit/jquery_datepicker.git'
+#gem 'jquery_datepicker', git: 'https://github.com/foodforarabbit/jquery_datepicker.git'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
