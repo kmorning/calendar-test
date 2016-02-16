@@ -72,6 +72,6 @@ class CalendarEventsController < ApplicationController
                                             :repeats_yearly_on,
                                             :repeats_yearly_on_days_of_the_week,
                                             :repeats_yearly_on_ordinals,
-                                            :time_zone, :calendar_id)
+                                            :name, :description, :calendar_id)
   end
 end
