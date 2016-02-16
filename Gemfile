@@ -60,6 +60,9 @@ gem "haml"
 # User jquery-ui instead for datepicker
 gem 'jquery-ui-rails'
 
+# timepicker
+gem 'jquery-timepicker-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.timepicker.js
 //= require turbolinks
 //= require foundation 
 //= require moment
@@ -24,5 +25,8 @@ $(function() {
 });
 
 $(document).on("page:load ready", function(){
-      $("input.datepicker").datepicker();
+      $("input.datepicker").datepicker({
+        dateFormat: "yy-mm-dd"
+      });
+      $( "input.timepicker" ).timepicker({ 'timeFormat': 'h:i A' });
 })
