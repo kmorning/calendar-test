@@ -1,0 +1,28 @@
+.span3.pull-right
+  = link_to 'Back To Calendar', root_path, :class => 'btn btn-danger'
+  = link_to 'Edit', edit_calendar_event_path(calendar_event), :class => 'btn btn-primary'
+%strong Name:
+= calendar_event.name
+%br
+%strong Description:
+= calendar_event.description
+%br
+%strong From:
+= calendar_event.from_date
+= calendar_event.from_time
+%br
+%strong To:
+= calendar_event.to_date
+= calendar_event.to_time
+%br
+%strong Duration:
+= calendar_event.schedule.duration
+%br
+%strong Schedule:
+= calendar_event.schedule
+%br
+%strong Upcomming Events:
+- calendar_event.schedule.first(5).each do |e|
+  %br
+  = e.to_s
+
