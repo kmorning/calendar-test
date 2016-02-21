@@ -17,14 +17,14 @@ $(document).ready ->
     return
 
   toggle_event_times = ->
-    if $('#event_is_all_day').is(':checked')
+    if $('#calendar_event_is_all_day').is(':checked')
       $('.event_time').hide()
     else
       $('.event_time').show()
     return
 
   toggle_event_times()
-  $('#event_is_all_day').on 'change', ->
+  $('#calendar_event_is_all_day').on 'change', ->
     toggle_event_times()
     return
 
