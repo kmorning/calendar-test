@@ -52,15 +52,15 @@ $(document).ready ->
     return
 
   toggle_repeat_ends_on = ->
-    switch $('#event_repeat_ends').val()
+    switch $('#calendar_event_repeat_ends').val()
       when 'never'
-        $('#event_repeat_ends_on').hide()
+        $('#calendar_event_repeat_ends_on').hide()
       when 'on'
-        $('#event_repeat_ends_on').show()
+        $('#calendar_event_repeat_ends_on').show()
     return
 
   toggle_repeat_ends_on()
-  $('#event_repeat_ends').on 'change', ->
+  $('#calendar_event_repeat_ends').on 'change', ->
     toggle_repeat_ends_on()
     return
 

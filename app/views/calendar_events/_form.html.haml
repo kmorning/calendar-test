@@ -22,11 +22,14 @@
         = f.input :to_date, as: :datepicker
         = f.input :to_time, as: :timepicker
         = f.input :repeats, collection: CalendarEvent::RepeatsOptions
-        #repeats_options.event_option
         = render partial: 'repeats_daily_options', locals: {f: f}
         = render partial: 'repeats_weekly_options', locals: {f: f}
         = render partial: 'repeats_monthly_options', locals: {f: f}
         = render partial: 'repeats_yearly_options', locals: {f: f}
+        #repeats_options.event_option
+          = f.select :repeat_ends, CalendarEvent::RepeatEndsOptions
+          #calendar_event_repeat_ends_on
+            = f.date_select :repeat_ends_on, {}, {style: 'width:auto;'}
 
     .row
       .large-12.columns
