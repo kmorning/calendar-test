@@ -68,7 +68,7 @@ class CalendarEventInstance
         i = CalendarEventInstance.new()
         i.title = event.name
         i.color = event.calendar.color
-        i.url = Rails.application.routes.url_helpers.event_path(event)
+        i.url = Rails.application.routes.url_helpers.calendar_event_path(event)
         i.start = date
         i.end = date + event.duration
         i.allDay = event.is_all_day
