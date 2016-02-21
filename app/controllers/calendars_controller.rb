@@ -26,6 +26,8 @@ class CalendarsController < ApplicationController
     if calendar.save
       flash[:notice] = 'calendar was successfully updated'
       redirect_to(root_path)
+    else
+      render :edit
     end
   end
   def destroy

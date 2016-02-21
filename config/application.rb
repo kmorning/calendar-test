@@ -26,5 +26,8 @@ module FullcalendarTest
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # White list web console
+    config.web_console.whitelisted_ips = '192.168.0.0/24'
   end
 end

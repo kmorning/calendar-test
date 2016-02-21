@@ -93,19 +93,24 @@ module Repeatable
     end
   end
 
+  # FIXME: Do I need TZ support?
   def from
     if is_all_day
-      ActiveSupport::TimeZone[time_zone].parse(from_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day
+      #ActiveSupport::TimeZone[time_zone].parse(from_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day
+      Date.parse(from_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day
     else
-      ActiveSupport::TimeZone[time_zone].parse(from_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day + from_time.seconds_since_midnight
+      #ActiveSupport::TimeZone[time_zone].parse(from_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day + from_time.seconds_since_midnight
+      Date.parse(from_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day + from_time.seconds_since_midnight
     end
   end
 
   def to
     if is_all_day
-      ActiveSupport::TimeZone[time_zone].parse(to_date.to_datetime.strftime('%Y-%m-%d')).end_of_day
+      #ActiveSupport::TimeZone[time_zone].parse(to_date.to_datetime.strftime('%Y-%m-%d')).end_of_day
+      Date.parse(to_date.to_datetime.strftime('%Y-%m-%d')).end_of_day
     else
-      ActiveSupport::TimeZone[time_zone].parse(to_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day + to_time.seconds_since_midnight
+      #ActiveSupport::TimeZone[time_zone].parse(to_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day + to_time.seconds_since_midnight
+      Date.parse(to_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day + to_time.seconds_since_midnight
     end
   end
 
