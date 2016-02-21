@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
-$ ->
+$(document).ready ->
 
   toggle_repeats_yearly_on = ->
     if $('#event_repeats_yearly_on').is(':checked')
@@ -30,7 +30,7 @@ $ ->
 
   toggle_event_options = ->
     $('.event_option').hide()
-    switch $('#event_repeats').val()
+    switch $('#calendar_event_repeats').val()
       when 'never' then
       when 'daily'
         $('#repeats_options').show()
@@ -47,7 +47,7 @@ $ ->
     return
 
   toggle_event_options()
-  $('#event_repeats').on 'change', ->
+  $('#calendar_event_repeats').on 'change', ->
     toggle_event_options()
     return
 
