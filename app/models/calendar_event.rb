@@ -6,7 +6,7 @@ class CalendarEvent < ActiveRecord::Base
   validates_presence_of :calendar_id
   validates_presence_of :from_date
   validates_presence_of :to_date
-  validates_presence_of :time_zone
+  #validates_presence_of :time_zone
   validates_presence_of :from_time, :if => :not_all_day?
   validates_presence_of :to_time, :if => :not_all_day?
 
