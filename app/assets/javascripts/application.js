@@ -24,9 +24,10 @@ $(function() {
   $(document).foundation();
 });
 
-$(document).on("page:load ready", function(){
-      $("input.datepicker").datepicker({
-        dateFormat: "yy-mm-dd"
-      });
-      $( "input.timepicker" ).timepicker({ 'timeFormat': 'h:i A' });
+$(document). on("page:load ready", function(){
+  $("input.datepicker").datepicker({
+    dateFormat: "yy-mm-dd",
+    altField: $(this).next()
+  });
+  $( "input.timepicker" ).timepicker({ 'timeFormat': 'h:i A' });
 })
