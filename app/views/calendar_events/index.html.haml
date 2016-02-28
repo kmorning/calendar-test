@@ -3,6 +3,7 @@
 %br
 %br
 - calendar_events.each do |e|
+  = link_to 'x', calendar_event_path(e), method: :delete, data: { confirm: 'Are you sure you want to remove the event?' }
   = link_to e.name, edit_calendar_event_path(e)
   %br
   %br

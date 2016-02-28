@@ -55,7 +55,7 @@ class CalendarEventsController < ApplicationController
   def destroy
     #calendar_event = CalendarEvent.find(params[:id])
     calendar_event.destroy
-    redirect_to root_path
+    redirect_to calendar_events_path
   end
 
   private
