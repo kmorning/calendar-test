@@ -25,9 +25,12 @@ $(function() {
 });
 
 $(document). on("page:load ready", function(){
-  $("input.datepicker").datepicker({
-    dateFormat: "yy-mm-dd",
-    altField: $(this).next()
-  });
+  $("input.datepicker").each(function(input) {
+    $(this).datepicker({
+      dateFormat: "yy-mm-dd",
+      altField: $(this).next(),
+      altFormat: "yy-mm-dd"
+    })
+  })
   $( "input.timepicker" ).timepicker({ 'timeFormat': 'h:i A' });
 })
