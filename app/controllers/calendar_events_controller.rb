@@ -65,7 +65,7 @@ class CalendarEventsController < ApplicationController
                                             :repeat_ends_on, :repeats,
                                             :repeats_every_n_days,
                                             :repeats_every_n_weeks,
-                                            :repeats_weekly_each_days_of_the_week,
+                                            {repeats_weekly_each_days_of_the_week: []},
                                             :repeats_every_n_months,
                                             :repeats_monthly,
                                             :repeats_monthly_each_days_of_the_month,
