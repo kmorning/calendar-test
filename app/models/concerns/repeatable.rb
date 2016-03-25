@@ -93,6 +93,7 @@ module Repeatable
     end
   end
 
+=begin
   # FIXME: Do I need TZ support?
   def from
     if is_all_day
@@ -113,6 +114,7 @@ module Repeatable
       Time.zone.parse(to_date.to_datetime.strftime('%Y-%m-%d')).beginning_of_day + to_time.seconds_since_midnight
     end
   end
+=end
 
   def duration
     d = to - from - 1

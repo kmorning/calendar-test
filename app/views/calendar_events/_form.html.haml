@@ -14,17 +14,25 @@
       - if params[:start_date]
         = f.input :from_date, as: :datepicker, input_html: {value: "#{start_date}"}
         .event_time
-          = f.input :from_time, as: :timepicker, input_html: {value: "#{start_time}"}
+          = f.input :from_hour, collection: 0..24
+          = f.input :from_min, collection: [0, 15, 30, 45]
+
         = f.input :to_date, as: :datepicker, input_html: {value: "#{start_date}"}
         .event_time
-          = f.input :to_time, as: :timepicker, input_html: {value: "#{end_time}"}
+          = f.input :to_hour, collection: 0..24
+          = f.input :to_min, collection: [0, 15, 30, 45]
+
       - else
         = f.input :from_date, as: :datepicker
         .event_time
-          = f.input :from_time, as: :timepicker
+          = f.input :from_hour, collection: 0..24
+          = f.input :from_min, collection: [0, 15, 30, 45]
+
         = f.input :to_date, as: :datepicker
         .event_time
-          = f.input :to_time, as: :timepicker
+          = f.input :to_hour, collection: 0..24
+          = f.input :to_min, collection: [0, 15, 30, 45]
+
         = f.input :repeats, collection: CalendarEvent::RepeatsOptions
         = render partial: 'repeats_daily_options', locals: {f: f}
         = render partial: 'repeats_weekly_options', locals: {f: f}

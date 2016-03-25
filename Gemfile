@@ -61,7 +61,10 @@ gem "haml"
 gem 'jquery-ui-rails'
 
 # timepicker
-gem 'jquery-timepicker-rails'
+#gem 'jquery-timepicker-rails'
+
+# Use time splitter with one date field instead
+gem 'time_splitter'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

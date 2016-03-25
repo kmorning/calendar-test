@@ -27,14 +27,16 @@ class CalendarEventsController < ApplicationController
     if params[:calendar_event][:to_date].empty?
       params[:calendar_event][:to_date] = Date.today
     end
-    if params[:calendar_event][:is_all_day] == '0'
-      if params[:calendar_event][:from_time].empty?
-        params[:calendar_event][:from_time] = Time.now.beginning_of_day
-      end
-      if params[:calendar_event][:to_time].empty?
-        params[:calendar_event][:to_time] = Time.now.end_of_day
-      end
-    end
+
+    #FIXME: how to handle empty time if it ever can happen?
+    #if params[:calendar_event][:is_all_day] == '0'
+    #  if params[:calendar_event][:from_time].empty?
+    #    params[:calendar_event][:from_time] = Time.now.beginning_of_day
+    #  end
+    #  if params[:calendar_event][:to_time].empty?
+    #    params[:calendar_event][:to_time] = Time.now.end_of_day
+    #  end
+    #end
     if calendar_event.save
       flash[:notice] = 'Event Created'
       redirect_to root_path
@@ -60,8 +62,10 @@ class CalendarEventsController < ApplicationController
 
   private
   def calendar_event_params
-    params.require(:calendar_event).permit(:from_date, :from_time, :to_date,
-                                            :to_time, :is_all_day, :repeat_ends,
+    params.require(:calendar_event).permit(:from_date, :from_time, :from_hour,
+                                           :from_min, :to_date, :to_hour,
+                                           :to_min, :to_time, 
+                                           :is_all_day, :repeat_ends,
                                             :repeat_ends_on, :repeats,
                                             :repeats_every_n_days,
                                             :repeats_every_n_weeks,

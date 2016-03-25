@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214212800) do
+ActiveRecord::Schema.define(version: 20160325172419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,6 @@ ActiveRecord::Schema.define(version: 20160214212800) do
     t.string   "name"
     t.text     "description"
     t.boolean  "is_all_day"
-    t.date     "from_date"
-    t.time     "from_time"
-    t.date     "to_date"
-    t.time     "to_time"
     t.string   "repeats"
     t.integer  "repeats_every_n_days"
     t.integer  "repeats_every_n_weeks"
@@ -44,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160214212800) do
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.integer  "calendar_id"
+    t.date     "from"
+    t.date     "to"
   end
 
   add_index "calendar_events", ["calendar_id"], name: "index_calendar_events_on_calendar_id", using: :btree
