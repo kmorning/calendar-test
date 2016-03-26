@@ -8,12 +8,10 @@
 = calendar_event.description
 %br
 %strong From:
-= calendar_event.from_date
-= calendar_event.from_time
+= calendar_event.from.strftime("%Y-%m-%d %H:%M")
 %br
 %strong To:
-= calendar_event.to_date
-= calendar_event.to_time
+= calendar_event.to.strftime("%Y-%m-%d %H:%M")
 %br
 %strong Duration:
 = calendar_event.schedule.duration
