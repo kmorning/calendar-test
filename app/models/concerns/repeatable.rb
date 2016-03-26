@@ -120,7 +120,7 @@ module Repeatable
     d = to - from - 1
   end
 
-  def schedule(starts_at = nil, ends_at = nil)
+  def create_schedule(starts_at = nil, ends_at = nil)
     starts_at ||= from
     ends_at ||= to
     if duration > 0

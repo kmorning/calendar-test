@@ -4,6 +4,8 @@ class CalendarEvent < ActiveRecord::Base
   extend TimeSplitter::Accessors
   split_accessor :from, :to, default: -> { Time.zone.now }
 
+  serialize :schedule, IceCube::Schedule
+
   belongs_to :calendar
   validates_presence_of :name
   validates_presence_of :calendar_id

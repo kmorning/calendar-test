@@ -37,6 +37,7 @@ class CalendarEventsController < ApplicationController
     #    params[:calendar_event][:to_time] = Time.now.end_of_day
     #  end
     #end
+    calendar_event.schedule = calendar_event.create_schedule
     if calendar_event.save
       flash[:notice] = 'Event Created'
       redirect_to root_path
@@ -47,6 +48,7 @@ class CalendarEventsController < ApplicationController
   def update
     #e = CalendarEvent.find(params[:id])
     #e.update_attributes(params[:calendar_event])
+    calendar_event.schedule = calendar_event.create_schedule
     if calendar_event.save
       flash[:notice] = 'Event Updated'
       redirect_to root_path
