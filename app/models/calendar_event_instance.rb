@@ -70,7 +70,7 @@ class CalendarEventInstance
         i.color = event.calendar.color
         i.url = Rails.application.routes.url_helpers.calendar_event_path(event)
         i.start = date
-        i.end = date + event.duration
+        i.end = date + event.duration.seconds
         i.allDay = event.is_all_day
         i.event_id = event.id
         i.textColor = 'black'
