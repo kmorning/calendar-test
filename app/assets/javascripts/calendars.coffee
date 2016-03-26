@@ -36,7 +36,7 @@ root.reload_calendar = ->
 
     } ]
     eventResize: @eventDropOrResize
-    timeFormat: 'h:mmtt{ - h:mmtt} '
+    timeFormat: 'H:mm '
   return
 
 $(document).ready ->
