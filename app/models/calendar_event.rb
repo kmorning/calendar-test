@@ -2,7 +2,7 @@ class CalendarEvent < ActiveRecord::Base
   include Repeatable
 
   extend TimeSplitter::Accessors
-  split_accessor :from, :to
+  split_accessor :from, :to, default: -> { Time.zone.now }
 
   belongs_to :calendar
   validates_presence_of :name

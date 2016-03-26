@@ -16,50 +16,50 @@ class CalendarEventInstance
       results = CalendarEvent.where{
         (
           (repeats == 'never') &
-          (from_date >= begin_date) &
-          (from_date <= end_date)
+          (from >= begin_date) &
+          (from <= end_date)
         ) | (
           (repeats == 'never') &
-          (to_date >= begin_date) &
-          (to_date <= end_date)
+          (to >= begin_date) &
+          (to <= end_date)
         ) | (
           (repeats == 'never') &
-          (from_date <= begin_date) &
-          (to_date >= end_date)
+          (from <= begin_date) &
+          (to >= end_date)
         ) | (
           (repeats != 'never') &
-          (from_date <= end_date) &
+          (from <= end_date) &
           (repeat_ends == 'on') &
           (repeat_ends_on >= begin_date)
         ) | (
           (repeats != 'never') &
           (repeat_ends == 'never') &
-          (from_date <= end_date)
+          (from <= end_date)
         )
       }.where(:calendar_id => calendar_ids.split(',').reject{ |c| c.empty? }.uniq)
     else
      results = CalendarEvent.where{
        (
          (repeats == 'never') &
-         (from_date >= begin_date) &
-         (from_date <= end_date)
+         (from >= begin_date) &
+         (from <= end_date)
        ) | (
          (repeats == 'never') &
-         (to_date >= begin_date) &
-         (to_date <= end_date)
+         (to >= begin_date) &
+         (to <= end_date)
        ) | (
          (repeats == 'never') &
-         (from_date <= begin_date) &
-         (to_date >= end_date)
+         (from <= begin_date) &
+         (to >= end_date)
        ) | (
          (repeats != 'never') &
-         (from_date <= end_date) &
+         (from <= end_date) &
          (repeat_ends == 'on') &
          (repeat_ends_on >= begin_date)
        ) | (
          (repeats != 'never') &
          (repeat_ends == 'never') &
-         (from_date <= end_date)
+         (from <= end_date)
        )
      }
     end
